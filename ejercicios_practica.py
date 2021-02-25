@@ -104,7 +104,7 @@ def fill():
 
 
 def fetch():
-    print('Comprovemos su contenido, ¿qué hay en la tabla?')
+    print('Comprobemos su contenido, ¿qué hay en la tabla?')
     # Crear una query para imprimir en pantalla
     # todos los objetos creaods de la tabla estudiante.
     # Imprimir en pantalla cada objeto que traiga la query
@@ -131,8 +131,13 @@ def search_by_tutor(nombre):
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    result = session.query(Estudiante).join(Estudiante.tutor).filter(nombre.tutor)
-    print('Personas de', result)
+    result = session.query(Estudiante).join(Estudiante.tutor).filter(Tutor.name == nombre)
+
+    print ("Alumnos asignados a ", nombre)
+
+    for imprimir in result:
+        print(imprimir)
+
 
 
 def modify(id, name):
